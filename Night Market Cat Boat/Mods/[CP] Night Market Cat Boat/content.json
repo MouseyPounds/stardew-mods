@@ -1,0 +1,90 @@
+{
+	"Format": "1.4",
+	"ConfigSchema": {
+		"SailorHat": {
+			"AllowValues": "true, false",
+			"Default": "true"
+		},
+	},
+	"Changes": [
+		{
+			"Action": "EditImage",
+			"Target": "Maps/night_market_tilesheet_objects",
+			"FromFile": "assets/Boat.png",
+			"ToArea": { "X": 224, "Y": 64, "Width": 160, "Height": 96 }
+		},
+		{
+			"Action": "EditImage",
+			"Target": "night_market_tilesheet_objects",
+			"FromFile": "assets/Boat.png",
+			"ToArea": { "X": 224, "Y": 64, "Width": 160, "Height": 96 }			
+		},
+		{
+			"Action": "EditImage",
+			"Target": "Maps/night_market_tilesheet_objects",
+			"FromFile": "assets/Animation.png",
+			"FromArea": { "X": 0, "Y": 0, "Width": 96, "Height": 32 },
+			"ToArea": { "X": 0, "Y": 272, "Width": 96, "Height": 32 }
+		},
+		{
+			"Action": "EditImage",
+			"Target": "night_market_tilesheet_objects",
+			"FromFile": "assets/Animation.png",
+			"FromArea": { "X": 0, "Y": 0, "Width": 96, "Height": 32 },
+			"ToArea": { "X": 0, "Y": 272, "Width": 96, "Height": 32 }
+		},
+		{
+			"Action": "EditImage",
+			"Target": "LooseSprites/temporary_sprites_1",
+			"FromFile": "assets/Animation.png",
+			"FromArea": { "X": 0, "Y": 32, "Width": 54, "Height": 23 },
+			"ToArea": { "X": 89, "Y": 164, "Width": 54, "Height": 23 }
+		},
+		// Hat Overlay
+		{
+			"Action": "EditImage",
+			"Target": "Maps/night_market_tilesheet_objects",
+			"FromFile": "assets/SailorHat.png",
+			"PatchMode": "Overlay",
+			"FromArea": { "X": 20, "Y": 39, "Width": 15, "Height": 9 },
+			"ToArea": { "X": 312, "Y": 106, "Width": 15, "Height": 9 },
+			"Enabled": "{{SailorHat}}"
+		},
+		{
+			"Action": "EditImage",
+			"Target": "night_market_tilesheet_objects",
+			"FromFile": "assets/SailorHat.png",
+			"PatchMode": "Overlay",
+			"FromArea": { "X": 20, "Y": 39, "Width": 15, "Height": 9 },
+			"ToArea": { "X": 312, "Y": 106, "Width": 15, "Height": 9 },
+			"Enabled": "{{SailorHat}}"	
+		},
+		{
+			"Action": "EditImage",
+			"Target": "Maps/night_market_tilesheet_objects",
+			"FromFile": "assets/SailorHat.png",
+			"PatchMode": "Overlay",
+			"FromArea": { "X": 0, "Y": 0, "Width": 96, "Height": 32 },
+			"ToArea": { "X": 0, "Y": 272, "Width": 96, "Height": 32 },
+			"Enabled": "{{SailorHat}}"
+		},
+		{
+			"Action": "EditImage",
+			"Target": "night_market_tilesheet_objects",
+			"FromFile": "assets/SailorHat.png",
+			"PatchMode": "Overlay",
+			"FromArea": { "X": 0, "Y": 0, "Width": 96, "Height": 32 },
+			"ToArea": { "X": 0, "Y": 272, "Width": 96, "Height": 32 },
+			"Enabled": "{{SailorHat}}"
+		},
+		{
+			"Action": "EditImage",
+			"Target": "LooseSprites/temporary_sprites_1",
+			"FromFile": "assets/SailorHat.png",
+			"PatchMode": "Overlay",
+			"FromArea": { "X": 0, "Y": 32, "Width": 54, "Height": 23 },
+			"ToArea": { "X": 89, "Y": 164, "Width": 54, "Height": 23 },
+			"Enabled": "{{SailorHat}}"
+		},
+	]
+}
