@@ -24,7 +24,7 @@
 
 * The fence item will be renamed to "Hedge Fence" and will keep the durability amount of the fence which it replaces; so if you replace wood fences they will decay very quickly and if you replace hardwood fences they will decay very slowly. **_The name change will only apply to items that are newly crafted after the mod was installed; hedge fences currently in the save file will still retain their old name_**.
 * The Hedge Fence will sell for 1g regardless of what they are replacing and what material was chosen. **_The value change will only apply to items that are newly crafted after the mod was installed; hedge fences currently in the save file will still retain their old sale price_**.
-* The crafting recipe **_will not change names_** and will still refer to the fence that was replaced. This is done to prevent possible issues with the **Craft Master**  achievement.
+* The crafting recipe **_will not change names_** and will still refer to the fence that was replaced. This is done to prevent possible issues with the *Craft Master*  achievement.
  * Hedge Fences always craft at a 1:1 rate regardless of what they are replacing and what material was chosen.
 
 ## Compatibility:
