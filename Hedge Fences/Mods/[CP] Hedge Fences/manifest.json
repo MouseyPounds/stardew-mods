@@ -1,7 +1,7 @@
 {
    "Name": "Hedge Fences",
    "Author": "MouseyPounds",
-   "Version": "1.0.2",
+   "Version": "1.1.0",
    "Description": "Content Patcher mod replacing fences with hedges.",
    "UniqueID": "MouseyPounds.HedgeFences",
    "MinimumApiVersion": "2.0",

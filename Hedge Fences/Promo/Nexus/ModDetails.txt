@@ -18,7 +18,7 @@ Details:
 [list=1]
 [*]Install the latest version of [url=https://smapi.io/]SMAPI[/url].
 [*]Install the latest version of [url=https://www.nexusmods.com/stardewvalley/mods/1915]Content Patcher[/url].
-[*]Unzip the download and place the included [color=#b6d7a8][code][CP] X[/code][/color] folder into your [color=#b6d7a8][code]Mods[/code][/color] folder.
+[*]Unzip the download and place the included [color=#b6d7a8][code][CP] Hedge Fences[/code][/color] folder into your [color=#b6d7a8][code]Mods[/code][/color] folder.
 [/list]
 
 [b]Configuration:
@@ -29,7 +29,8 @@ Details:
 [*][b][color=#6d9eeb]AddFlowers[/color][/b] lets you choose whether or not the hedge will have flowers. Choices are [color=#b4a7d6][i]true[/i] [/color](default) or [i][color=#b4a7d6]false[/color][/i].
 [*][b][color=#6d9eeb]FlowerType[/color][/b] lets you choose what color flowers (if [b]AddFlowers[/b] is true). The mixed option has blue, pink, and purple flowers; the others are various shades of the named color. Choices are [i][color=#b4a7d6]mixed [/color][/i](default), [i][color=#b4a7d6]blue[/color][/i], [i][color=#b4a7d6]pink[/color][/i], and [i][color=#b4a7d6]yellow[/color][/i]. 
 [*][b][color=#6d9eeb]HedgeShade[/color][/b] lets you choose how dark the hedge should be. Choices are [i][color=#b4a7d6]dark [/color][/i](default) and [i][color=#b4a7d6]light[/color][/i].
-[*][b][color=#6d9eeb]SnowInWinter[/color][/b] lets you choose whether the hedge should be covered in snow during winter. Choices are [i][color=#b4a7d6]true [/color][/i](default) or [i][color=#b4a7d6]false[/color][/i].
+[*][b][color=#6d9eeb]SnowInWinter[/color][/b] lets you choose whether the hedge should be covered in snow during winter. Choices are [i][color=#b4a7d6]full[/color][/i] (default), [i][color=#b4a7d6]half[/color][/i] or [i][color=#b4a7d6]none[/color][/i].
+[*][b][color=#6d9eeb]FlowersInWinter[/color][/b] lets you choose whether the flowers (if enabled) still show during winter. Choices are [i][color=#b4a7d6]true[/color][/i] or [i][color=#b4a7d6]false[/color][/i] (default).
 [/list]
 
 [b]Additional Notes:
