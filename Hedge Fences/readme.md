@@ -4,7 +4,7 @@
 
 **Hedge Fences** is a Content Patcher mod which replaces one of the fence items in the game with a hedge. The base hedge is based closely on the graphics of the the maze from the Spirit's Eve festival. There are a variety of Customization options which can be set in the `config.json` file; this file is not included with the download and will be automatically created the first time the game is run with the mod loaded.
 
-## Installation
+## Installation:
 
 1. Install the latest version of [SMAPI](https://smapi.io/).
 2. Install the latest version of [Content Patcher](https://www.nexusmods.com/stardewvalley/mods/1915).
