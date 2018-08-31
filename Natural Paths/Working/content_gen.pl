@@ -11,6 +11,8 @@ my %texture = (
 	'DarkGrass' => 'Dark Grass',
 	'LightDirt' => 'Light Dirt',
 	'DarkDirt' => 'Dark Dirt',
+	'LightSoil' => 'Light Soil',
+	'DarkSoil' => 'Dark Soil',
 	'Sand' => 'Sand',
 	'Straw' => 'Straw',
 	'Shadow' => 'Shadow',
@@ -114,8 +116,12 @@ print <<"END_PRINT";
 	},
 	"Changes": [
 END_PRINT
-# Some changes use all When choices except 'None'. Currently this is just hardcoded.
-my $tex_condition = "LightGrass, DarkGrass, LightDirt, DarkDirt, Sand, Straw, Shadow, Transparent";
+# Some changes use all 'When' choices except 'None'. Hardcoding bit me in the ass.
+#my $tex_condition = "LightGrass, DarkGrass, LightDirt, DarkDirt, Sand, Straw, Shadow, Transparent";
+my $tex_condition = join(', ', (sort keys %texture));
+$tex_condition =~ s/None,? ?//;
+$tex_condition =~ s/, $//;
+
 foreach my $t (sort keys %token) {
 	print <<"END_PRINT";
 		{
@@ -148,7 +154,7 @@ END_PRINT
 			"Target": "Data/CraftingRecipes",
 			"Fields": { "$token{$t}{'name'}": { 0: "$craft_mat{$m} 1", 2: "$token{$t}{'obj_id'}$suffix" } },
 			"When": { 
-				"$t": "LightGrass, DarkGrass, LightDirt, DarkDirt, Sand, Straw, Shadow, Transparent",
+				"$t": "$tex_condition",
 				"Crafting_Material": "$m",
 				"Crafting_Amount": $a
 			}
