@@ -7,6 +7,12 @@ Works with Stardew 1.3
 Overview:
 X is a Content Patcher mod which 
 
+Permissions:
+This mod is released under [url=https://github.com/MouseyPounds/stardew-mods/blob/master/LICENSE]an MIT License[/url]. Although not required, the author would appreciate being informed of any derivative works which include or alter the mod or its assets.
+
+Credits:
+This mod uses only original assets and modifications of existing game assets.
+
 Details:
 [b]Description:
 
