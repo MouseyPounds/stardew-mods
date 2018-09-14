@@ -15,25 +15,21 @@ my %replace = (
 	'Wood' => {
 		'name' => 'Wood Fence',
 		'obj_id' => 322,
-		'filename' => 'Fence1',
 		'obj_sprite' => '"X": 160, "Y": 208',
 		},
 	'Stone' => {
 		'name' => 'Stone Fence',
 		'obj_id' => 323,
-		'filename' => 'Fence2',
 		'obj_sprite' => '"X": 176, "Y": 208',
 		},
 	'Iron' => {
 		'name' => 'Iron Fence',
 		'obj_id' => 324,
-		'filename' => 'Fence3',
 		'obj_sprite' => '"X": 192, "Y": 208',
 		},
 	'Hardwood' => {
 		'name' => 'Hardwood Fence',
 		'obj_id' => 298,
-		'filename' => 'Fence5',
 		'obj_sprite' => '"X": 160, "Y": 192',
 		},
 	);
@@ -46,7 +42,7 @@ my %craft_mat = (
 
 # No output file, everything just prints to stdout and needs redirection because !lazy
 select STDOUT;
-print qq({\n\t"Format": "1.3",\n\t"ConfigSchema": {\n);
+print qq({\n\t"Format": "1.5",\n\t"ConfigSchema": {\n);
 print qq(\t\t"ReplaceFence": {\n\t\t\t"AllowValues": ") . join(', ', (sort keys %replace)) . qq(",\n\t\t\t"Default": "Hardwood"\n\t\t},\n);
 print qq(\t\t"CraftingMaterial": {\n\t\t\t"AllowValues":  ") . join(', ', (sort keys %craft_mat)) . qq(",\n\t\t\t"Default": "Hardwood"\n\t\t},\n);
 print qq(\t\t"AddFlowers": {\n\t\t\t"AllowValues": "true, false",\n\t\t\t"Default": "true"\n\t\t},\n);
@@ -54,58 +50,89 @@ print qq(\t\t"FlowerType": {\n\t\t\t"AllowValues": ") . join(', ', (@flowers)) .
 print qq(\t\t"HedgeShade": {\n\t\t\t"AllowValues": ") . join(', ', (@hedges)) . qq(",\n\t\t\t"Default": "dark"\n\t\t},\n);
 print qq(\t\t"SnowInWinter": {\n\t\t\t"AllowValues": ") . join(', ', (@snow)) . qq(",\n\t\t\t"Default": "all"\n\t\t},\n);
 print qq(\t\t"FlowersInWinter": {\n\t\t\t"AllowValues": "true, false",\n\t\t\t"Default": "false"\n\t\t},\n);
-print qq(\t},\n\t"Changes": [\n);
 
-foreach my $r (sort keys %replace) {
-	print <<"END_PRINT";
+print <<"END_PRINT";
+	},
+    "DynamicTokens": [
+        {
+            "Name": "FenceTarget",
+            "Value": "LooseSprites/Fence1",
+            "When": { "ReplaceFence": "Wood" }
+        },
+        {
+            "Name": "FenceTarget",
+            "Value": "LooseSprites/Fence2",
+            "When": { "ReplaceFence": "Stone" }
+        },
+        {
+            "Name": "FenceTarget",
+            "Value": "LooseSprites/Fence3",
+            "When": { "ReplaceFence": "Iron" }
+        },
+        {
+            "Name": "FenceTarget",
+            "Value": "LooseSprites/Fence5",
+            "When": { "ReplaceFence": "Hardwood" }
+        }
+    ],
+	"Changes": [
 		{
+			"LogName": "Main Fence Replace",
 			"Action": "EditImage",
-			"Target": "LooseSprites/$replace{$r}{'filename'}",
+			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/hedge_{{HedgeShade}}.png",
 			"ToArea": { "X": 0, "Y": 0, "Width": 48, "Height": 128},
 			"FromArea": { "X": 0, "Y": 0, "Width": 48, "Height": 128},
-			"When": { "ReplaceFence": "$r" }
 		},
 		{
+			"LogName": "Lower Right Fence Replace",
 			"Action": "EditImage",
-			"Target": "LooseSprites/$replace{$r}{'filename'}",
+			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/hedge_{{HedgeShade}}.png",
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 32, "Y": 160, "Width": 16, "Height": 32 },
 			"FromArea": { "X": 32, "Y": 160, "Width": 16, "Height": 32 },
-			"When": { "ReplaceFence": "$r" }
 		},
 		{
+			"LogName": "Flower Overlay SSF",
 			"Action": "EditImage",
-			"Target": "LooseSprites/$replace{$r}{'filename'}",
+			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
 			"PatchMode": "Overlay",
 			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "$r", "Season": "Spring, Summer, Fall" }
+			"When": { "Season": "Spring, Summer, Fall" }
 		},
 		{
+			"LogName": "Flower Overlay Winter",
 			"Action": "EditImage",
-			"Target": "LooseSprites/$replace{$r}{'filename'}",
+			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
 			"PatchMode": "Overlay",
 			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "$r", "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "Season": "Winter" , "FlowersInWinter": "true" }
 		},
 		{
+			"LogName": "Snow Overlay All",
 			"Action": "EditImage",
-			"Target": "LooseSprites/$replace{$r}{'filename'}",
+			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/snow.png",
 			"PatchMode": "Overlay",
-			"When": { "season": "winter", "ReplaceFence": "$r", "SnowInWinter": "all" }
+			"When": { "season": "winter", "SnowInWinter": "all" }
 		},
 		{
+			"LogName": "Snow Overlay Half",
 			"Action": "EditImage",
-			"Target": "LooseSprites/$replace{$r}{'filename'}",
+			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/snow_half.png",
 			"PatchMode": "Overlay",
-			"When": { "season": "winter", "ReplaceFence": "$r", "SnowInWinter": "half" }
+			"When": { "season": "winter", "SnowInWinter": "half" }
 		},
+END_PRINT
+
+foreach my $r (sort keys %replace) {
+	print <<"END_PRINT";
 		{
+			"LogName": "Inventory Sprite ($r)",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/hedge_{{HedgeShade}}.png",
@@ -114,6 +141,7 @@ foreach my $r (sort keys %replace) {
 			"When": { "ReplaceFence": "$r" }
 		},
 		{
+			"LogName": "Inventory Sprite ($r) with Flowers SSF",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
@@ -124,6 +152,7 @@ foreach my $r (sort keys %replace) {
 			"When": { "ReplaceFence": "$r", "Season": "Spring, Summer, Fall" }
 		},
 		{
+			"LogName": "Inventory Sprite ($r) with Flowers Winter",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
@@ -134,6 +163,7 @@ foreach my $r (sort keys %replace) {
 			"When": { "ReplaceFence": "$r", "Season": "Winter" , "FlowersInWinter": "true" }
 		},
 		{
+			"LogName": "Inventory Sprite ($r) with Snow All",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/snow.png",
@@ -143,6 +173,7 @@ foreach my $r (sort keys %replace) {
 			"When": { "season": "winter", "ReplaceFence": "$r", "SnowInWinter": "all"  }
 		},
 		{
+			"LogName": "Inventory Sprite ($r) with Snow Half",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/snow_half.png",
@@ -152,6 +183,7 @@ foreach my $r (sort keys %replace) {
 			"When": { "season": "winter", "ReplaceFence": "$r", "SnowInWinter": "half"  }
 		},
 		{
+			"LogName": "Name in ObjectInformation ($r)",
 			"Action": "EditData",
 			"Target": "Data/ObjectInformation",
 			"Fields": {
@@ -164,6 +196,7 @@ END_PRINT
 		# next if ($m eq 'NoChange');
 		print <<"END_PRINT";
 		{
+			"LogName": "CraftingRecipe ($r) ($m)",
 			"Action": "EditData",
 			"Target": "Data/CraftingRecipes",
 			"Fields": { "$replace{$r}{'name'}": { 0: "$craft_mat{$m} 1", 2: "$replace{$r}{'obj_id'}" } },

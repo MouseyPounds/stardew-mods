@@ -1,5 +1,5 @@
 {
-	"Format": "1.4",
+	"Format": "1.5",
 	"ConfigSchema": {
 		"ShaneRemoveFootprints": {
 			"AllowValues": "true, false",
@@ -12,105 +12,63 @@
 	},
 	"Changes": [
 		{
+			"LogName": "Default Floor for Abigail, Leah, Maru, Sebastian, Shane",
 			"Action": "EditImage",
-			"Target": "walls_and_floors",
+			"Target": "walls_and_floors, Maps/walls_and_floors",
 			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
 			"FromFile": "assets/SpouseDefaults.png",
 			"FromArea": { "X": 0, "Y": 0, "Width": 32, "Height": 32 },
 			"When" : { "Spouse": "Abigail, Leah, Maru, Sebastian, Shane" }
 		},
 		{
+			"LogName": "Default Floor for Penny, Sam",
 			"Action": "EditImage",
-			"Target": "Maps/walls_and_floors",
-			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
-			"FromFile": "assets/SpouseDefaults.png",
-			"FromArea": { "X": 0, "Y": 0, "Width": 32, "Height": 32 },
-			"When" : { "Spouse": "Abigail, Leah, Maru, Sebastian, Shane" }
-		},
-		{
-			"Action": "EditImage",
-			"Target": "walls_and_floors",
+			"Target": "walls_and_floors, Maps/walls_and_floors",
 			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
 			"FromFile": "assets/SpouseDefaults.png",
 			"FromArea": { "X": 32, "Y": 0, "Width": 32, "Height": 32 },
 			"When" : { "Spouse": "Penny, Sam" }
 		},
 		{
+			"LogName": "Default Floor for Haley, Harvey",
 			"Action": "EditImage",
-			"Target": "Maps/walls_and_floors",
-			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
-			"FromFile": "assets/SpouseDefaults.png",
-			"FromArea": { "X": 32, "Y": 0, "Width": 32, "Height": 32 },
-			"When" : { "Spouse": "Penny, Sam" }
-		},
-		{
-			"Action": "EditImage",
-			"Target": "walls_and_floors",
+			"Target": "walls_and_floors, Maps/walls_and_floors",
 			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
 			"FromFile": "assets/SpouseDefaults.png",
 			"FromArea": { "X": 64, "Y": 0, "Width": 32, "Height": 32 },
 			"When" : { "Spouse": "Haley, Harvey" }
 		},
 		{
+			"LogName": "Default Floor for Emily",
 			"Action": "EditImage",
-			"Target": "Maps/walls_and_floors",
-			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
-			"FromFile": "assets/SpouseDefaults.png",
-			"FromArea": { "X": 64, "Y": 0, "Width": 32, "Height": 32 },
-			"When" : { "Spouse": "Haley, Harvey" }
-		},
-		{
-			"Action": "EditImage",
-			"Target": "walls_and_floors",
+			"Target": "walls_and_floors, Maps/walls_and_floors",
 			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
 			"FromFile": "assets/SpouseDefaults.png",
 			"FromArea": { "X": 96, "Y": 0, "Width": 32, "Height": 32 },
 			"When" : { "Spouse": "Emily" }
 		},
 		{
+			"LogName": "Default Floor for Alex",
 			"Action": "EditImage",
-			"Target": "Maps/walls_and_floors",
-			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
-			"FromFile": "assets/SpouseDefaults.png",
-			"FromArea": { "X": 96, "Y": 0, "Width": 32, "Height": 32 },
-			"When" : { "Spouse": "Emily" }
-		},
-		{
-			"Action": "EditImage",
-			"Target": "walls_and_floors",
+			"Target": "walls_and_floors, Maps/walls_and_floors",
 			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
 			"FromFile": "assets/SpouseDefaults.png",
 			"FromArea": { "X": 128, "Y": 0, "Width": 32, "Height": 32 },
 			"When" : { "Spouse": "Alex" }
 		},
 		{
+			"LogName": "Default Floor for Elliott",
 			"Action": "EditImage",
-			"Target": "Maps/walls_and_floors",
-			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
-			"FromFile": "assets/SpouseDefaults.png",
-			"FromArea": { "X": 128, "Y": 0, "Width": 32, "Height": 32 },
-			"When" : { "Spouse": "Alex" }
-		},
-		{
-			"Action": "EditImage",
-			"Target": "walls_and_floors",
+			"Target": "walls_and_floors, Maps/walls_and_floors",
 			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
 			"FromFile": "assets/SpouseDefaults.png",
 			"FromArea": { "X": 160, "Y": 0, "Width": 32, "Height": 32 },
 			"When" : { "Spouse": "Elliott" }
 		},
 		{
+			"LogName": "Shane Footprints",
 			"Action": "EditImage",
-			"Target": "Maps/walls_and_floors",
-			"ToArea": { "X": 0, "Y": 336, "Width": 32, "Height": 32 },
-			"FromFile": "assets/SpouseDefaults.png",
-			"FromArea": { "X": 160, "Y": 0, "Width": 32, "Height": 32 },
-			"When" : { "Spouse": "Elliott" }
-		},
-		// Optional changes: Remove footprints from Shane's room
-		{
-			"Action": "EditImage",
-			"Target": "townInterior",
+			"Target": "townInterior, Maps/townInterior",
 			"FromFile": "assets/townInteriorEdits.png",
 			"PatchMode": "Overlay",
 			"FromArea": { "X": 0, "Y": 0, "Width": 48, "Height": 32 },
@@ -118,47 +76,22 @@
 			"Enabled": "{{ShaneRemoveFootprints}}"
 		},
 		{
+			"LogName": "Shane Beer Cans to Books",
 			"Action": "EditImage",
-			"Target": "maps/townInterior",
-			"FromFile": "assets/townInteriorEdits.png",
-			"PatchMode": "Overlay",
-			"FromArea": { "X": 0, "Y": 0, "Width": 48, "Height": 32 },
-			"ToArea": { "X": 416, "Y": 1056, "Width": 48, "Height": 32 },
-			"Enabled": "{{ShaneRemoveFootprints}}"
-		},
-		// Optional changes: Replace beer cans in Shane's room with books & plants
-		{
-			"Action": "EditImage",
-			"Target": "townInterior",
+			"Target": "townInterior, Maps/townInterior",
 			"FromFile": "assets/BeerCanReplacements.png",
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16 },
 			"ToArea": { "X": 368, "Y": 1072, "Width": 16, "Height": 16 },
 			"Enabled": "{{ShaneReplaceBeerCans}}"
 		},
 		{
+			"LogName": "Shane Beer Cans to Plant",
 			"Action": "EditImage",
-			"Target": "townInterior",
+			"Target": "townInterior, Maps/townInterior",
 			"FromFile": "assets/BeerCanReplacements.png",
 			"FromArea": { "X": 32, "Y": 0, "Width": 16, "Height": 16 },
 			"ToArea": { "X": 400, "Y": 1072, "Width": 16, "Height": 16 },
 			"Enabled": "{{ShaneReplaceBeerCans}}"
 		},
-		{
-			"Action": "EditImage",
-			"Target": "Maps/townInterior",
-			"FromFile": "assets/BeerCanReplacements.png",
-			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16 },
-			"ToArea": { "X": 368, "Y": 1072, "Width": 16, "Height": 16 },
-			"Enabled": "{{ShaneReplaceBeerCans}}"
-		},
-		{
-			"Action": "EditImage",
-			"Target": "Maps/townInterior",
-			"FromFile": "assets/BeerCanReplacements.png",
-			"FromArea": { "X": 32, "Y": 0, "Width": 16, "Height": 16 },
-			"ToArea": { "X": 400, "Y": 1072, "Width": 16, "Height": 16 },
-			"Enabled": "{{ShaneReplaceBeerCans}}"
-		},
-
 	]
 }

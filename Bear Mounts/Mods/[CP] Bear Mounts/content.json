@@ -19,26 +19,26 @@
 		}
 	},
 	"Changes": [
-		{	// The Bear
+		{	"LogName": "The Bear",
 			"Action": "Load",
 			"Target": "Animals/horse",
 			"FromFile": "assets/BearMount_{{WhichBear}}.png",
 		},
-		{	// Saddle Overlay (edits entire image)
+		{	"LogName": "Saddle Overlay",
 			"Action": "EditImage",
 			"Target": "Animals/horse",
 			"FromFile": "assets/SaddleOverlay.png",
 			"PatchMode": "Overlay",
 			"When": { "UseSaddle": "true" }
 		},
-		{	// UI Icon on in-game menu
+		{	"LogName": "Menu icon",
 			"Action": "EditImage",
 			"Target": "LooseSprites/Cursors",
 			"FromFile": "assets/BearMount_{{WhichBear}}.png",
 			"ToArea": { "X": 192, "Y": 192, "Width": 16, "Height": 16},
 			"FromArea": { "X": 192, "Y": 96, "Width": 16, "Height": 16}
 		},
-		{	// Male Farmer: Remove the reins if requested
+		{	"LogName": "Male Farmer Reins",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_base",
 			"FromFile": "assets/FarmerPieces_Male.png",
@@ -46,21 +46,21 @@
 			"FromArea": { "X": 0, "Y": 0, "Width": 32, "Height": 32},
 			"When": { "ShowReins": "false" }
 		},
-		{	// Male Farmer: Widen farmer leg spread  when riding towards top of screen
+		{	"LogName": "Male Farmer wider legs",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_base",
 			"FromFile": "assets/FarmerPieces_Male.png",
 			"ToArea": { "X": 368, "Y": 576, "Width": 16, "Height": 32},
 			"FromArea": { "X": 32, "Y": 0, "Width": 16, "Height": 32}
 		},
-		{	// Male Farmer: Widen farmer feet spread  when riding towards top of screen
+		{	"LogName": "Male Farmer wider feet",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_base",
 			"FromFile": "assets/FarmerPieces_Male.png",
 			"ToArea": { "X": 80, "Y": 576, "Width": 16, "Height": 32},
 			"FromArea": { "X": 48, "Y": 0, "Width": 16, "Height": 32}
 		},
-		{	// Female Farmer: Remove the reins if requested
+		{	"LogName": "Female Farmer Reins",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_girl_base",
 			"FromFile": "assets/FarmerPieces_Female.png",
@@ -68,28 +68,28 @@
 			"FromArea": { "X": 0, "Y": 0, "Width": 32, "Height": 32},
 			"When": { "ShowReins": "false" }
 		},
-		{	// Female Farmer: Widen farmer leg spread when riding towards top of screen
+		{	"LogName": "Female Farmer wider legs",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_girl_base",
 			"FromFile": "assets/FarmerPieces_Female.png",
 			"ToArea": { "X": 368, "Y": 576, "Width": 16, "Height": 32},
 			"FromArea": { "X": 32, "Y": 0, "Width": 16, "Height": 32}
 		},
-		{	// Female Farmer: Widen farmer feet spread when riding towards top of screen
+		{	"LogName": "Female Farmer wider feet",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_girl_base",
 			"FromFile": "assets/FarmerPieces_Female.png",
 			"ToArea": { "X": 80, "Y": 576, "Width": 16, "Height": 32},
 			"FromArea": { "X": 48, "Y": 0, "Width": 16, "Height": 32}
 		},
-		{	// Female Farmer: Fix weird offcenter riding position
+		{	"LogName": "Female Farmer recenter",
 			"Action": "EditImage",
 			"Target": "Characters/Farmer/farmer_girl_base",
 			"FromFile": "assets/FarmerPieces_Female.png",
 			"ToArea": { "X": 368, "Y": 544, "Width": 16, "Height": 32},
 			"FromArea": { "X": 64, "Y": 0, "Width": 16, "Height": 32}
 		},
-		{	// Stable Overlay (adds bear-appropriate foods)
+		{	"LogName": "Stable overlay", // (adds bear-appropriate foods)
 			"Action": "EditImage",
 			"Target": "Buildings/Stable",
 			"FromFile": "assets/StableOverlay.png",
