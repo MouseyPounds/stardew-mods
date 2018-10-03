@@ -5,9 +5,15 @@
 use strict;
 
 my $include_floors = 0;
+my $include_ck = 0;
 if (scalar @ARGV) {
-	# Any argument at all is assigned to $include_floors
-	$include_floors = $ARGV[0];
+	# An argument of `ck` adds special keys for clefairykid, who is helping with testing
+	# Any other argument sets $include_floors, used for the "alternate" version.
+	if (lc($ARGV[0]) eq 'ck') {
+		$include_ck = 1;
+	} else {
+		$include_floors = 1;
+	}
 }
 
 # ConfigSchema texture choices and mapping to in-game name
@@ -17,13 +23,15 @@ my %texture = (
 	'DarkGrass' => 'Dark Grass',
 	'LightDirt' => 'Light Dirt',
 	'DarkDirt' => 'Dark Dirt',
-	'LightSoil' => 'Light Soil',
-	'DarkSoil' => 'Dark Soil',
 	'Sand' => 'Sand',
 	'Straw' => 'Straw',
 	'Shadow' => 'Shadow',
 	'Transparent' => 'Transparent',
 	);
+if ($include_ck) {
+	$texture{'LightSoil'} = 'Light Soil';
+	$texture{'DarkSoil'} = 'Dark Soil';
+}
 # ConfigSchema options for which texture to replace.
 # These need to be mapped to in-game recipe name, object ID, and sprite coordinates
 my %token = (
@@ -99,7 +107,7 @@ my %craft_mat = (
 
 # No output file, everything just prints to stdout and needs redirection because !lazy
 select STDOUT;
-print qq({\n\t"Format": "1.3",\n\t"ConfigSchema": {\n);
+print qq({\n\t"Format": "1.5",\n\t"ConfigSchema": {\n);
 foreach my $t (sort keys %token) {
 	# default is DarkDirt for GravelPath and LightGrass for WoodPath; None for all others
 	my $d = "None";
@@ -122,6 +130,47 @@ print <<"END_PRINT";
 			"Default": "false"
 		},
 	},
+    "DynamicTokens": [
+        {
+            "Name": "CraftObject",
+            "Value": "771",
+            "When": { "Crafting_Material": "Fiber" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "388",
+            "When": { "Crafting_Material": "Wood" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "709",
+            "When": { "Crafting_Material": "Hardwood" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "390",
+            "When": { "Crafting_Material": "Stone" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "330",
+            "When": { "Crafting_Material": "Clay" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "92",
+            "When": { "Crafting_Material": "Sap" }
+        },
+        {
+            "Name": "CraftCount",
+            "Value": " {{Crafting_Amount}}",
+        },
+        {
+            "Name": "CraftCount",
+            "Value": "",
+            "When": { "Crafting_Amount": "1" }
+        },
+	],
 	"Changes": [
 END_PRINT
 # Some changes use all 'When' choices except 'None'. Hardcoding bit me in the ass.
@@ -133,50 +182,45 @@ $tex_condition =~ s/, $//;
 foreach my $t (sort keys %token) {
 	print <<"END_PRINT";
 		{
+			"LogName": "Flooring ($token{$t}{'name'})",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/{{$t}}_{{Season}}.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { "$t": "$tex_condition" }
+			"When": { "$t:None": "false" }
 		},
 		{
+			"LogName": "Springobject ($token{$t}{'name'})",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/{{$t}}_{{Season}}.png",
 			"ToArea": { $token{$t}{'obj_sprite'}, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
-			"When": { "$t": "$tex_condition" }
+			"When": { "$t:None": "false" }
 		},
 END_PRINT
-	# Crafting recipe still triggers on any non-'None' texture condition but needs to account for all possible material/amount combos
-	foreach my $m (sort keys %craft_mat) {
-		next if ($m eq 'NoChange');
-		foreach my $a (@craft_amt) {
-			# Vanilla files only list a crafting amt on the product if it's more than 1 so we do the same.
-			my $suffix = '';
-			$suffix = " $a" if ($a > 1);
-			print <<"END_PRINT";
+	print <<"END_PRINT";
 		{
+			"LogName": "CraftingRecipes ($token{$t}{'name'})",
 			"Action": "EditData",
 			"Target": "Data/CraftingRecipes",
-			"Fields": { "$token{$t}{'name'}": { 0: "$craft_mat{$m} 1", 2: "$token{$t}{'obj_id'}$suffix" } },
+			"Fields": { "$token{$t}{'name'}": { 0: "{{CraftObject}} 1", 2: "$token{$t}{'obj_id'}\{{CraftCount}}" } },
 			"When": { 
-				"$t": "$tex_condition",
-				"Crafting_Material": "$m",
-				"Crafting_Amount": $a
+				"$t:None": "false",
+				"Crafting_Material:NoChange": "false",
 			}
 		},
 END_PRINT
-		}
-	}
 	# Now we change the in-game name of any altered texture. These are texture-specific
+	# Can we simplify this through dynamic tokens?
 	$token{$t}{'name'} =~ / (\w+)$/;
 	my $type = $1;
 	foreach my $x (sort keys %texture) {
 		next if ($x eq 'None');
 		print <<"END_PRINT";
 		{
+			"LogName": "ObjectInformation ($token{$t}{'name'}) to ($texture{$x})",
 			"Action": "EditData",
 			"Target": "Data/ObjectInformation",
 			"Fields": {	"$token{$t}{'obj_id'}": { 0: "$texture{$x} $type" } },
@@ -190,43 +234,52 @@ END_PRINT
 foreach my $t (sort keys %token) {
 	print <<"END_PRINT";
 		{
+			"LogName": "Flooring Snow Override ($token{$t}{'name'})",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"Enabled": "{{Snow_Overrides_LightGrass}}",
-			"When": { "$t": "LightGrass", "Season": "Winter" }
+			"When": { "$t": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
+			"LogName": "SpringObjects Snow Override ($token{$t}{'name'})",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
 			"ToArea": { $token{$t}{'obj_sprite'}, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
-			"Enabled": "{{Snow_Overrides_LightGrass}}",
-			"When": { "$t": "LightGrass", "Season": "Winter" }
+			"When": { "$t": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
+			"LogName": "Flooring Ice Override ($token{$t}{'name'})",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"Enabled": "{{Ice_Overrides_DarkGrass}}",
-			"When": { "$t": "DarkGrass", "Season": "Winter" }
+			"When": { "$t": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
+			"LogName": "SpringObjects Ice Override ($token{$t}{'name'})",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
 			"ToArea": { $token{$t}{'obj_sprite'}, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
-			"Enabled": "{{Ice_Overrides_DarkGrass}}",
-			"When": { "$t": "DarkGrass", "Season": "Winter" }
+			"When": { "$t": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 END_PRINT
 }
 print qq(\t]\n}\n);
 
 __END__
+	# Crafting recipe still triggers on any non-'None' texture condition but needs to account for all possible material/amount combos
+	foreach my $m (sort keys %craft_mat) {
+		next if ($m eq 'NoChange');
+		foreach my $a (@craft_amt) {
+			# Vanilla files only list a crafting amt on the product if it's more than 1 so we do the same.
+			my $suffix = '';
+			$suffix = " $a" if ($a > 1);
+		}
+	}

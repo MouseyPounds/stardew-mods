@@ -50,7 +50,42 @@
             "Name": "FenceTarget",
             "Value": "LooseSprites/Fence5",
             "When": { "ReplaceFence": "Hardwood" }
-        }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "322",
+            "When": { "ReplaceFence": "Wood" }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "323",
+            "When": { "ReplaceFence": "Stone" }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "324",
+            "When": { "ReplaceFence": "Iron" }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "298",
+            "When": { "ReplaceFence": "Hardwood" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "771",
+            "When": { "CraftingMaterial": "Fiber" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "388",
+            "When": { "CraftingMaterial": "Wood" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "709",
+            "When": { "CraftingMaterial": "Hardwood" }
+        },
     ],
 	"Changes": [
 		{
@@ -76,8 +111,7 @@
 			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
 			"PatchMode": "Overlay",
-			"Enabled": "{{AddFlowers}}",
-			"When": { "Season": "Spring, Summer, Fall" }
+			"When": { "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Flower Overlay Winter",
@@ -85,8 +119,7 @@
 			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
 			"PatchMode": "Overlay",
-			"Enabled": "{{AddFlowers}}",
-			"When": { "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Snow Overlay All",
@@ -105,6 +138,20 @@
 			"When": { "season": "winter", "SnowInWinter": "half" }
 		},
 		{
+			"LogName": "Names in ObjectInformation",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {
+				"{{FenceObject}}": { "0": "Hedge Fence", "1": "1", "4": "Hedge Fence" }
+				},
+		},
+		{
+			"LogName": "CraftingRecipe",
+			"Action": "EditData",
+			"Target": "Data/CraftingRecipes",
+			"Fields": { "{{ReplaceFence}} Fence": { 0: "{{CraftObject}} 1", 2: "{{FenceObject}}" } },
+		},
+		{
 			"LogName": "Inventory Sprite (Hardwood)",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
@@ -121,8 +168,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 160, "Y": 192, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Hardwood", "Season": "Spring, Summer, Fall" }
+			"When": { "ReplaceFence": "Hardwood", "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Hardwood) with Flowers Winter",
@@ -132,8 +178,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 160, "Y": 192, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Hardwood", "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "ReplaceFence": "Hardwood", "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Hardwood) with Snow All",
@@ -156,36 +201,6 @@
 			"When": { "season": "winter", "ReplaceFence": "Hardwood", "SnowInWinter": "half"  }
 		},
 		{
-			"LogName": "Name in ObjectInformation (Hardwood)",
-			"Action": "EditData",
-			"Target": "Data/ObjectInformation",
-			"Fields": {
-				"298": { "0": "Hedge Fence", "1": "1", "4": "Hedge Fence" }
-				},
-			"When": { "ReplaceFence": "Hardwood" }
-		},
-		{
-			"LogName": "CraftingRecipe (Hardwood) (Fiber)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Hardwood Fence": { 0: "771 1", 2: "298" } },
-			"When": { "ReplaceFence": "Hardwood", "CraftingMaterial": "Fiber" }
-		},
-		{
-			"LogName": "CraftingRecipe (Hardwood) (Hardwood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Hardwood Fence": { 0: "709 1", 2: "298" } },
-			"When": { "ReplaceFence": "Hardwood", "CraftingMaterial": "Hardwood" }
-		},
-		{
-			"LogName": "CraftingRecipe (Hardwood) (Wood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Hardwood Fence": { 0: "388 1", 2: "298" } },
-			"When": { "ReplaceFence": "Hardwood", "CraftingMaterial": "Wood" }
-		},
-		{
 			"LogName": "Inventory Sprite (Iron)",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
@@ -202,8 +217,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 192, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Iron", "Season": "Spring, Summer, Fall" }
+			"When": { "ReplaceFence": "Iron", "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Iron) with Flowers Winter",
@@ -213,8 +227,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 192, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Iron", "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "ReplaceFence": "Iron", "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Iron) with Snow All",
@@ -237,36 +250,6 @@
 			"When": { "season": "winter", "ReplaceFence": "Iron", "SnowInWinter": "half"  }
 		},
 		{
-			"LogName": "Name in ObjectInformation (Iron)",
-			"Action": "EditData",
-			"Target": "Data/ObjectInformation",
-			"Fields": {
-				"324": { "0": "Hedge Fence", "1": "1", "4": "Hedge Fence" }
-				},
-			"When": { "ReplaceFence": "Iron" }
-		},
-		{
-			"LogName": "CraftingRecipe (Iron) (Fiber)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Iron Fence": { 0: "771 1", 2: "324" } },
-			"When": { "ReplaceFence": "Iron", "CraftingMaterial": "Fiber" }
-		},
-		{
-			"LogName": "CraftingRecipe (Iron) (Hardwood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Iron Fence": { 0: "709 1", 2: "324" } },
-			"When": { "ReplaceFence": "Iron", "CraftingMaterial": "Hardwood" }
-		},
-		{
-			"LogName": "CraftingRecipe (Iron) (Wood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Iron Fence": { 0: "388 1", 2: "324" } },
-			"When": { "ReplaceFence": "Iron", "CraftingMaterial": "Wood" }
-		},
-		{
 			"LogName": "Inventory Sprite (Stone)",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
@@ -283,8 +266,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 176, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Stone", "Season": "Spring, Summer, Fall" }
+			"When": { "ReplaceFence": "Stone", "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Stone) with Flowers Winter",
@@ -294,8 +276,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 176, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Stone", "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "ReplaceFence": "Stone", "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Stone) with Snow All",
@@ -318,36 +299,6 @@
 			"When": { "season": "winter", "ReplaceFence": "Stone", "SnowInWinter": "half"  }
 		},
 		{
-			"LogName": "Name in ObjectInformation (Stone)",
-			"Action": "EditData",
-			"Target": "Data/ObjectInformation",
-			"Fields": {
-				"323": { "0": "Hedge Fence", "1": "1", "4": "Hedge Fence" }
-				},
-			"When": { "ReplaceFence": "Stone" }
-		},
-		{
-			"LogName": "CraftingRecipe (Stone) (Fiber)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Stone Fence": { 0: "771 1", 2: "323" } },
-			"When": { "ReplaceFence": "Stone", "CraftingMaterial": "Fiber" }
-		},
-		{
-			"LogName": "CraftingRecipe (Stone) (Hardwood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Stone Fence": { 0: "709 1", 2: "323" } },
-			"When": { "ReplaceFence": "Stone", "CraftingMaterial": "Hardwood" }
-		},
-		{
-			"LogName": "CraftingRecipe (Stone) (Wood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Stone Fence": { 0: "388 1", 2: "323" } },
-			"When": { "ReplaceFence": "Stone", "CraftingMaterial": "Wood" }
-		},
-		{
 			"LogName": "Inventory Sprite (Wood)",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
@@ -364,8 +315,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 160, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Wood", "Season": "Spring, Summer, Fall" }
+			"When": { "ReplaceFence": "Wood", "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Wood) with Flowers Winter",
@@ -375,8 +325,7 @@
 			"PatchMode": "Overlay",
 			"ToArea": { "X": 160, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "Wood", "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "ReplaceFence": "Wood", "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite (Wood) with Snow All",
@@ -397,36 +346,6 @@
 			"ToArea": { "X": 160, "Y": 208, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
 			"When": { "season": "winter", "ReplaceFence": "Wood", "SnowInWinter": "half"  }
-		},
-		{
-			"LogName": "Name in ObjectInformation (Wood)",
-			"Action": "EditData",
-			"Target": "Data/ObjectInformation",
-			"Fields": {
-				"322": { "0": "Hedge Fence", "1": "1", "4": "Hedge Fence" }
-				},
-			"When": { "ReplaceFence": "Wood" }
-		},
-		{
-			"LogName": "CraftingRecipe (Wood) (Fiber)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Wood Fence": { 0: "771 1", 2: "322" } },
-			"When": { "ReplaceFence": "Wood", "CraftingMaterial": "Fiber" }
-		},
-		{
-			"LogName": "CraftingRecipe (Wood) (Hardwood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Wood Fence": { 0: "709 1", 2: "322" } },
-			"When": { "ReplaceFence": "Wood", "CraftingMaterial": "Hardwood" }
-		},
-		{
-			"LogName": "CraftingRecipe (Wood) (Wood)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "Wood Fence": { 0: "388 1", 2: "322" } },
-			"When": { "ReplaceFence": "Wood", "CraftingMaterial": "Wood" }
 		},
 	]
 }

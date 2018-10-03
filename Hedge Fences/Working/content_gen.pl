@@ -11,6 +11,7 @@ my @snow = qw(all half none);
 
 # ConfigSchema options for which texture to replace.
 # These need to be mapped to in-game recipe name, filename. object ID, and sprite coordinates
+# Most of this is now superceded by Dynamic Tokens
 my %replace = (
 	'Wood' => {
 		'name' => 'Wood Fence',
@@ -73,7 +74,42 @@ print <<"END_PRINT";
             "Name": "FenceTarget",
             "Value": "LooseSprites/Fence5",
             "When": { "ReplaceFence": "Hardwood" }
-        }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "322",
+            "When": { "ReplaceFence": "Wood" }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "323",
+            "When": { "ReplaceFence": "Stone" }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "324",
+            "When": { "ReplaceFence": "Iron" }
+        },
+        {
+            "Name": "FenceObject",
+            "Value": "298",
+            "When": { "ReplaceFence": "Hardwood" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "771",
+            "When": { "CraftingMaterial": "Fiber" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "388",
+            "When": { "CraftingMaterial": "Wood" }
+        },
+        {
+            "Name": "CraftObject",
+            "Value": "709",
+            "When": { "CraftingMaterial": "Hardwood" }
+        },
     ],
 	"Changes": [
 		{
@@ -99,8 +135,7 @@ print <<"END_PRINT";
 			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
 			"PatchMode": "Overlay",
-			"Enabled": "{{AddFlowers}}",
-			"When": { "Season": "Spring, Summer, Fall" }
+			"When": { "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Flower Overlay Winter",
@@ -108,8 +143,7 @@ print <<"END_PRINT";
 			"Target": "{{FenceTarget}}",
 			"FromFile": "assets/flowers_{{FlowerType}}.png",
 			"PatchMode": "Overlay",
-			"Enabled": "{{AddFlowers}}",
-			"When": { "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Snow Overlay All",
@@ -126,6 +160,20 @@ print <<"END_PRINT";
 			"FromFile": "assets/snow_half.png",
 			"PatchMode": "Overlay",
 			"When": { "season": "winter", "SnowInWinter": "half" }
+		},
+		{
+			"LogName": "Names in ObjectInformation",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {
+				"{{FenceObject}}": { "0": "Hedge Fence", "1": "1", "4": "Hedge Fence" }
+				},
+		},
+		{
+			"LogName": "CraftingRecipe",
+			"Action": "EditData",
+			"Target": "Data/CraftingRecipes",
+			"Fields": { "{{ReplaceFence}} Fence": { 0: "{{CraftObject}} 1", 2: "{{FenceObject}}" } },
 		},
 END_PRINT
 
@@ -148,8 +196,7 @@ foreach my $r (sort keys %replace) {
 			"PatchMode": "Overlay",
 			"ToArea": { $replace{$r}{'obj_sprite'}, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "$r", "Season": "Spring, Summer, Fall" }
+			"When": { "ReplaceFence": "$r", "Season": "Spring, Summer, Fall", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite ($r) with Flowers Winter",
@@ -159,8 +206,7 @@ foreach my $r (sort keys %replace) {
 			"PatchMode": "Overlay",
 			"ToArea": { $replace{$r}{'obj_sprite'}, "Width": 16, "Height": 16 },
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
-			"Enabled": "{{AddFlowers}}",
-			"When": { "ReplaceFence": "$r", "Season": "Winter" , "FlowersInWinter": "true" }
+			"When": { "ReplaceFence": "$r", "Season": "Winter" , "FlowersInWinter": "true", "AddFlowers": "true" }
 		},
 		{
 			"LogName": "Inventory Sprite ($r) with Snow All",
@@ -182,8 +228,16 @@ foreach my $r (sort keys %replace) {
 			"FromArea": { "X": 16, "Y": 64, "Width": 16, "Height": 16 },
 			"When": { "season": "winter", "ReplaceFence": "$r", "SnowInWinter": "half"  }
 		},
+END_PRINT
+}
+
+print qq(\t]\n}\n);
+
+__END__
+THese aren't supported yet:
+// Last patch before the loops
 		{
-			"LogName": "Name in ObjectInformation ($r)",
+			"LogName": "Names in ObjectInformation ($r)",
 			"Action": "EditData",
 			"Target": "Data/ObjectInformation",
 			"Fields": {
@@ -191,20 +245,17 @@ foreach my $r (sort keys %replace) {
 				},
 			"When": { "ReplaceFence": "$r" }
 		},
-END_PRINT
+
+// Crafting Loop
 	foreach my $m (sort keys %craft_mat) {
 		# next if ($m eq 'NoChange');
 		print <<"END_PRINT";
-		{
-			"LogName": "CraftingRecipe ($r) ($m)",
-			"Action": "EditData",
-			"Target": "Data/CraftingRecipes",
-			"Fields": { "$replace{$r}{'name'}": { 0: "$craft_mat{$m} 1", 2: "$replace{$r}{'obj_id'}" } },
-			"When": { "ReplaceFence": "$r", "CraftingMaterial": "$m" }
-		},
+			{
+				"LogName": "CraftingRecipe ($r) with ($m)",
+				"Action": "EditData",
+				"Target": "Data/CraftingRecipes",
+				"Fields": { "$replace{$r}{'name'}": { 0: "$craft_mat{$m} 1", 2: "$replace{$r}{'obj_id'}" } },
+				"When": { "CraftingMaterial": "$m", "ReplaceFence": "$r" }
+			},
 END_PRINT
 	}
-}
-print qq(\t]\n}\n);
-
-__END__
