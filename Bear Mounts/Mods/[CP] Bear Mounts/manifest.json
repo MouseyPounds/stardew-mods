@@ -1,7 +1,7 @@
 {
    "Name": "Bear Mounts",
    "Author": "MouseyPounds",
-   "Version": "1.0.0",
+   "Version": "1.1.0",
    "Description": "ContentPatcher mod changing the horse into a bear",
    "UniqueID": "MouseyPounds.BearMounts",
    "MinimumApiVersion": "2.6",
