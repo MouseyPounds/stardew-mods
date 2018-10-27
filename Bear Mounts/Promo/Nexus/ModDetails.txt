@@ -22,10 +22,13 @@ Here are some previews of the riding animation and the idle animation with the o
 [b]Configuration:
 [/b]
 [list]
-[*][color=#6d9eeb][b]WhichBear[/b][/color] lets you select which Bear texture to use. Choices are [color=#b4a7d6][i]brown[/i] [/color](default), [i][color=#b4a7d6]black[/color][/i], [i][color=#b4a7d6]polar[/color][/i], or [i][color=#b4a7d6]panda[/color][/i].
+[*][color=#6d9eeb][b]WhichBear[/b][/color] lets you select which Bear texture to use. Choices are [color=#b4a7d6][i]brown[/i] [/color](default), [i][color=#b4a7d6]black[/color][/i], [i][color=#b4a7d6]polar[/color][/i], [i][color=#b4a7d6]panda[/color][/i], or [i][color=#b4a7d6]skeleton[/color][/i].
 [*][b][color=#6d9eeb]UseSaddle[/color][/b] lets you choose whether or not the Bear will have a saddle. Choices are [color=#b4a7d6][i]true[/i]  [/color]or [i][color=#b4a7d6]false[/color][/i]  (default).
 [*][b][color=#6d9eeb]ShowReins[/color][/b] lets you choose whether or not the Farmer will hold reins when riding the Bear. Choices are [color=#b4a7d6][i]true[/i]  [/color]or [i][color=#b4a7d6]false[/color][/i]  (default).
 [*][b][color=#6d9eeb]ChangeStable[/color][/b] lets you choose whether the Stable texture should be changed to show Bear-friendly food options instead of hay. Choices are [i][color=#b4a7d6]true [/color][/i](default) or [i][color=#b4a7d6]false[/color][/i].
+[*][b][color=#6d9eeb]SkeletonForSpiritsEve[/color][/b] lets you choose whether to override your normal Bear with the Skeleton Bear during the last week of Fall. Choices are [i][color=#b4a7d6]true [/color][/i](default) or [i][color=#b4a7d6]false[/color][/i].
+
+
 [/list]
 
 [b]Additional Notes:

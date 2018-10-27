@@ -4,8 +4,8 @@
 
 use strict;
 
-my $include_floors = 0;
-my $include_ck = 0;
+my $include_floors = 1;
+my $include_ck = 1;
 if (scalar @ARGV) {
 	# An argument of `ck` adds special keys for clefairykid, who is helping with testing
 	# Any other argument sets $include_floors, used for the "alternate" version.
@@ -210,7 +210,7 @@ foreach my $t (sort keys %token) {
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"Enabled": "{{Snow_Overrides_LightGrass}}",
-			"When": { "$t": "LightGrass", "Season": "Winter" }
+			"When": { "$t": "LightGrass, EemieLightGrass", "Season": "Winter" }
 		},
 		{
 			"Action": "EditImage",
@@ -219,7 +219,7 @@ foreach my $t (sort keys %token) {
 			"ToArea": { $token{$t}{'obj_sprite'}, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"Enabled": "{{Snow_Overrides_LightGrass}}",
-			"When": { "$t": "LightGrass", "Season": "Winter" }
+			"When": { "$t": "LightGrass, EemieLightGrass", "Season": "Winter" }
 		},
 		{
 			"Action": "EditImage",
@@ -228,7 +228,7 @@ foreach my $t (sort keys %token) {
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"Enabled": "{{Ice_Overrides_DarkGrass}}",
-			"When": { "$t": "DarkGrass", "Season": "Winter" }
+			"When": { "$t": "DarkGrass, EemieDarkGrass", "Season": "Winter" }
 		},
 		{
 			"Action": "EditImage",
@@ -237,7 +237,7 @@ foreach my $t (sort keys %token) {
 			"ToArea": { $token{$t}{'obj_sprite'}, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"Enabled": "{{Ice_Overrides_DarkGrass}}",
-			"When": { "$t": "DarkGrass", "Season": "Winter" }
+			"When": { "$t": "DarkGrass, EemieDarkGrass", "Season": "Winter" }
 		},
 END_PRINT
 }
