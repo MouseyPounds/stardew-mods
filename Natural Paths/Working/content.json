@@ -1,40 +1,40 @@
 {
-	"Format": "1.6",
+	"Format": "1.7",
 	"ConfigSchema": {
 		"CobblestonePath_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"CrystalFloor_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"CrystalPath_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"GravelPath_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "DarkDirt"
 		},
 		"StoneFloor_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"StrawFloor_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"WeatheredFloor_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"WoodFloor_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "None"
 		},
 		"WoodPath_Replacement": {
-			"AllowValues": "DarkDirt, DarkGrass, EemieDarkDirt, EemieDarkGrass, EemieLightDirt, EemieLightGrass, LightDirt, LightGrass, None, Sand, Shadow, Straw, Transparent",
+			"AllowValues": "DarkDirt, DarkGrass, LightDirt, LightGrass, None, Pipe, Sand, Shadow, Straw, Transparent",
 			"Default": "LightGrass"
 		},
 		"Crafting_Material": {
@@ -51,7 +51,11 @@
 		},
 		"Ice_Overrides_DarkGrass": {
 			"AllowValues": "true, false",
-			"Default": "false"
+			"Default": "true"
+		},
+		"Recolor_Option": {
+			"AllowValues": "auto, Eemie, Starblue",
+			"Default": "auto"
 		},
 		"Eemie_Fall_Variant": {
 			"AllowValues": "green, orange",
@@ -98,223 +102,92 @@
             "Value": "",
             "When": { "Crafting_Amount": "1" }
         },
-		{
-            "Name": "CobblestonePath_Variant",
+        {
+            "Name": "Prefix",
             "Value": "",
         },
-		{
-            "Name": "CobblestonePath_Variant",
-            "Value": "_Green",
+        {
+            "Name": "Prefix",
+            "Value": "Eemie_",
             "When": {
-				"CobblestonePath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
+				"Recolor_Option": "auto",
+				"HasMod": "minervamaga.CP.eemieMapRecolour",
 			}
         },
-		{
-            "Name": "CobblestonePath_Variant",
-            "Value": "_Orange",
+        {
+            "Name": "Prefix",
+            "Value": "Starblue_",
             "When": {
-				"CobblestonePath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
+				"Recolor_Option": "auto",
+				"HasMod": "Lita.StarblueValley",
 			}
         },
-		{
-            "Name": "CrystalFloor_Variant",
+        {
+            "Name": "Prefix",
+            "Value": "Eemie_",
+            "When": { "Recolor_Option": "Eemie" }
+        },
+        {
+            "Name": "Prefix",
+            "Value": "Starblue_",
+            "When": { "Recolor_Option": "Starblue" }
+        },
+        {
+            "Name": "Variant",
             "Value": "",
         },
-		{
-            "Name": "CrystalFloor_Variant",
-            "Value": "_Green",
+        {
+            "Name": "Variant",
+            "Value": "_{{Eemie_Fall_Variant}}",
             "When": {
-				"CrystalFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
+				// To catch both possibilities (explicit setting or auto-detected) we will check the Dynamic Token instead of the config
+				"Prefix": "Eemie_",
 				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "CrystalFloor_Variant",
-            "Value": "_Orange",
-            "When": {
-				"CrystalFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "CrystalPath_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "CrystalPath_Variant",
-            "Value": "_Green",
-            "When": {
-				"CrystalPath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "CrystalPath_Variant",
-            "Value": "_Orange",
-            "When": {
-				"CrystalPath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "GravelPath_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "GravelPath_Variant",
-            "Value": "_Green",
-            "When": {
-				"GravelPath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "GravelPath_Variant",
-            "Value": "_Orange",
-            "When": {
-				"GravelPath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "StoneFloor_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "StoneFloor_Variant",
-            "Value": "_Green",
-            "When": {
-				"StoneFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "StoneFloor_Variant",
-            "Value": "_Orange",
-            "When": {
-				"StoneFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "StrawFloor_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "StrawFloor_Variant",
-            "Value": "_Green",
-            "When": {
-				"StrawFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "StrawFloor_Variant",
-            "Value": "_Orange",
-            "When": {
-				"StrawFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "WeatheredFloor_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "WeatheredFloor_Variant",
-            "Value": "_Green",
-            "When": {
-				"WeatheredFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "WeatheredFloor_Variant",
-            "Value": "_Orange",
-            "When": {
-				"WeatheredFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "WoodFloor_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "WoodFloor_Variant",
-            "Value": "_Green",
-            "When": {
-				"WoodFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "WoodFloor_Variant",
-            "Value": "_Orange",
-            "When": {
-				"WoodFloor_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
-			}
-        },
-		{
-            "Name": "WoodPath_Variant",
-            "Value": "",
-        },
-		{
-            "Name": "WoodPath_Variant",
-            "Value": "_Green",
-            "When": {
-				"WoodPath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "green"
-			}
-        },
-		{
-            "Name": "WoodPath_Variant",
-            "Value": "_Orange",
-            "When": {
-				"WoodPath_Replacement": "EemieDarkGrass, EemieLightGrass, EemieDarkDirt, EemieLightDirt",
-				"Season": "Fall",
-				"Eemie_Fall_Variant": "orange"
 			}
         },
 	],
 	"Changes": [
 		{
-			"LogName": "Flooring (Cobblestone Path)",
+			"LogName": "Flooring (Cobblestone Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{CobblestonePath_Replacement}}_{{Season}}{{CobblestonePath_Variant}}.png",
+			"FromFile": "assets/{{CobblestonePath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 0, "Y": 128, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "CobblestonePath_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Cobblestone Path)",
+			"LogName": "Flooring (Cobblestone Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{CobblestonePath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 0, "Y": 128, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{CobblestonePath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"CobblestonePath_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Cobblestone Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{CobblestonePath_Replacement}}_{{Season}}{{CobblestonePath_Variant}}.png",
+			"FromFile": "assets/{{CobblestonePath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 48, "Y": 272, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "CobblestonePath_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Cobblestone Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{CobblestonePath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 48, "Y": 272, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{CobblestonePath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"CobblestonePath_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Cobblestone Path)",
@@ -326,23 +199,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Crystal Floor)",
+			"LogName": "ObjectInformation Name Change (Cobblestone Path)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"411": { 0: "{{CobblestonePath_Replacement}} Path" } },
+			"When": { "CobblestonePath_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Crystal Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{CrystalFloor_Replacement}}_{{Season}}{{CrystalFloor_Variant}}.png",
+			"FromFile": "assets/{{CrystalFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 192, "Y": 0, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "CrystalFloor_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Crystal Floor)",
+			"LogName": "Flooring (Crystal Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{CrystalFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 192, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{CrystalFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"CrystalFloor_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Crystal Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{CrystalFloor_Replacement}}_{{Season}}{{CrystalFloor_Variant}}.png",
+			"FromFile": "assets/{{CrystalFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 336, "Y": 208, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "CrystalFloor_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Crystal Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{CrystalFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 336, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{CrystalFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"CrystalFloor_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Crystal Floor)",
@@ -354,23 +261,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Crystal Path)",
+			"LogName": "ObjectInformation Name Change (Crystal Floor)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"333": { 0: "{{CrystalFloor_Replacement}} Path" } },
+			"When": { "CrystalFloor_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Crystal Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{CrystalPath_Replacement}}_{{Season}}{{CrystalPath_Variant}}.png",
+			"FromFile": "assets/{{CrystalPath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 192, "Y": 64, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "CrystalPath_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Crystal Path)",
+			"LogName": "Flooring (Crystal Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{CrystalPath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 192, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{CrystalPath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"CrystalPath_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Crystal Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{CrystalPath_Replacement}}_{{Season}}{{CrystalPath_Variant}}.png",
+			"FromFile": "assets/{{CrystalPath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 16, "Y": 272, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "CrystalPath_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Crystal Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{CrystalPath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 16, "Y": 272, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{CrystalPath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"CrystalPath_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Crystal Path)",
@@ -382,23 +323,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Gravel Path)",
+			"LogName": "ObjectInformation Name Change (Crystal Path)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"409": { 0: "{{CrystalPath_Replacement}} Path" } },
+			"When": { "CrystalPath_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Gravel Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{GravelPath_Replacement}}_{{Season}}{{GravelPath_Variant}}.png",
+			"FromFile": "assets/{{GravelPath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 64, "Y": 64, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "GravelPath_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Gravel Path)",
+			"LogName": "Flooring (Gravel Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{GravelPath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 64, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{GravelPath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"GravelPath_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Gravel Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{GravelPath_Replacement}}_{{Season}}{{GravelPath_Variant}}.png",
+			"FromFile": "assets/{{GravelPath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 368, "Y": 256, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "GravelPath_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Gravel Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{GravelPath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 368, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{GravelPath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"GravelPath_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Gravel Path)",
@@ -410,23 +385,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Stone Floor)",
+			"LogName": "ObjectInformation Name Change (Gravel Path)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"407": { 0: "{{GravelPath_Replacement}} Path" } },
+			"When": { "GravelPath_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Stone Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{StoneFloor_Replacement}}_{{Season}}{{StoneFloor_Variant}}.png",
+			"FromFile": "assets/{{StoneFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 64, "Y": 0, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "StoneFloor_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Stone Floor)",
+			"LogName": "Flooring (Stone Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{StoneFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 64, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{StoneFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"StoneFloor_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Stone Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{StoneFloor_Replacement}}_{{Season}}{{StoneFloor_Variant}}.png",
+			"FromFile": "assets/{{StoneFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 272, "Y": 208, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "StoneFloor_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Stone Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{StoneFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 272, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{StoneFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"StoneFloor_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Stone Floor)",
@@ -438,23 +447,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Straw Floor)",
+			"LogName": "ObjectInformation Name Change (Stone Floor)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"329": { 0: "{{StoneFloor_Replacement}} Path" } },
+			"When": { "StoneFloor_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Straw Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{StrawFloor_Replacement}}_{{Season}}{{StrawFloor_Variant}}.png",
+			"FromFile": "assets/{{StrawFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 0, "Y": 64, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "StrawFloor_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Straw Floor)",
+			"LogName": "Flooring (Straw Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{StrawFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 0, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{StrawFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"StrawFloor_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Straw Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{StrawFloor_Replacement}}_{{Season}}{{StrawFloor_Variant}}.png",
+			"FromFile": "assets/{{StrawFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 272, "Y": 256, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "StrawFloor_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Straw Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{StrawFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 272, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{StrawFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"StrawFloor_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Straw Floor)",
@@ -466,23 +509,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Weathered Floor)",
+			"LogName": "ObjectInformation Name Change (Straw Floor)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"401": { 0: "{{StrawFloor_Replacement}} Path" } },
+			"When": { "StrawFloor_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Weathered Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{WeatheredFloor_Replacement}}_{{Season}}{{WeatheredFloor_Variant}}.png",
+			"FromFile": "assets/{{WeatheredFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 128, "Y": 0, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "WeatheredFloor_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Weathered Floor)",
+			"LogName": "Flooring (Weathered Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{WeatheredFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 128, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{WeatheredFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"WeatheredFloor_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Weathered Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{WeatheredFloor_Replacement}}_{{Season}}{{WeatheredFloor_Variant}}.png",
+			"FromFile": "assets/{{WeatheredFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 304, "Y": 208, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "WeatheredFloor_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Weathered Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{WeatheredFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 304, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{WeatheredFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"WeatheredFloor_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Weathered Floor)",
@@ -494,23 +571,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Wood Floor)",
+			"LogName": "ObjectInformation Name Change (Weathered Floor)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"331": { 0: "{{WeatheredFloor_Replacement}} Path" } },
+			"When": { "WeatheredFloor_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Wood Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{WoodFloor_Replacement}}_{{Season}}{{WoodFloor_Variant}}.png",
+			"FromFile": "assets/{{WoodFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "WoodFloor_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Wood Floor)",
+			"LogName": "Flooring (Wood Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{WoodFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{WoodFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"WoodFloor_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Wood Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{WoodFloor_Replacement}}_{{Season}}{{WoodFloor_Variant}}.png",
+			"FromFile": "assets/{{WoodFloor_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 256, "Y": 208, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "WoodFloor_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Wood Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{WoodFloor_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 256, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{WoodFloor_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"WoodFloor_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Wood Floor)",
@@ -522,23 +633,57 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring (Wood Path)",
+			"LogName": "ObjectInformation Name Change (Wood Floor)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"328": { 0: "{{WoodFloor_Replacement}} Path" } },
+			"When": { "WoodFloor_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring (Wood Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
-			"FromFile": "assets/{{WoodPath_Replacement}}_{{Season}}{{WoodPath_Variant}}.png",
+			"FromFile": "assets/{{WoodPath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 128, "Y": 64, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "WoodPath_Replacement:None": "false" }
 		},
 		{
-			"LogName": "Springobject (Wood Path)",
+			"LogName": "Flooring (Wood Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}{{WoodPath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 128, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{WoodPath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"WoodPath_Replacement:None": "false",
+			}
+		},
+		{
+			"LogName": "Springobject (Wood Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
-			"FromFile": "assets/{{WoodPath_Replacement}}_{{Season}}{{WoodPath_Variant}}.png",
+			"FromFile": "assets/{{WoodPath_Replacement}}_{{Season}}.png",
 			"ToArea": { "X": 336, "Y": 256, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "WoodPath_Replacement:None": "false" }
+		},
+		{
+			"LogName": "Springobject (Wood Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}{{WoodPath_Replacement}}_{{Season}}{{Variant}}.png",
+			"ToArea": { "X": 336, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { 
+				"HasFile:assets/{{Prefix}}{{WoodPath_Replacement}}_{{Season}}{{Variant}}.png": "true",
+				"WoodPath_Replacement:None": "false",
+			}
 		},
 		{
 			"LogName": "CraftingRecipes (Wood Path)",
@@ -550,8 +695,18 @@
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+/* Changing the item name is currently disabled because it can mess up the crafting recipes.
+   Note that two-word names would be missing a space between them.
 		{
-			"LogName": "Flooring Snow Override (Cobblestone Path)",
+			"LogName": "ObjectInformation Name Change (Wood Path)",
+			"Action": "EditData",
+			"Target": "Data/ObjectInformation",
+			"Fields": {	"405": { 0: "{{WoodPath_Replacement}} Path" } },
+			"When": { "WoodPath_Replacement:None": "false" }
+		},
+*/   
+		{
+			"LogName": "Flooring Snow Override (Cobblestone Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -560,7 +715,17 @@
 			"When": { "CobblestonePath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Cobblestone Path)",
+			"LogName": "Flooring Snow Override (Cobblestone Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 0, "Y": 128, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "CobblestonePath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Cobblestone Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -569,7 +734,17 @@
 			"When": { "CobblestonePath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Cobblestone Path)",
+			"LogName": "SpringObjects Snow Override (Cobblestone Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 48, "Y": 272, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "CobblestonePath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Cobblestone Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -578,7 +753,17 @@
 			"When": { "CobblestonePath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Cobblestone Path)",
+			"LogName": "Flooring Ice Override (Cobblestone Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 0, "Y": 128, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "CobblestonePath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Cobblestone Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -587,7 +772,17 @@
 			"When": { "CobblestonePath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Crystal Floor)",
+			"LogName": "SpringObjects Ice Override (Cobblestone Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 48, "Y": 272, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "CobblestonePath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Crystal Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -596,7 +791,17 @@
 			"When": { "CrystalFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Crystal Floor)",
+			"LogName": "Flooring Snow Override (Crystal Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 192, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "CrystalFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Crystal Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -605,7 +810,17 @@
 			"When": { "CrystalFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Crystal Floor)",
+			"LogName": "SpringObjects Snow Override (Crystal Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 336, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "CrystalFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Crystal Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -614,7 +829,17 @@
 			"When": { "CrystalFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Crystal Floor)",
+			"LogName": "Flooring Ice Override (Crystal Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 192, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "CrystalFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Crystal Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -623,7 +848,17 @@
 			"When": { "CrystalFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Crystal Path)",
+			"LogName": "SpringObjects Ice Override (Crystal Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 336, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "CrystalFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Crystal Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -632,7 +867,17 @@
 			"When": { "CrystalPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Crystal Path)",
+			"LogName": "Flooring Snow Override (Crystal Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 192, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "CrystalPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Crystal Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -641,7 +886,17 @@
 			"When": { "CrystalPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Crystal Path)",
+			"LogName": "SpringObjects Snow Override (Crystal Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 16, "Y": 272, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "CrystalPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Crystal Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -650,7 +905,17 @@
 			"When": { "CrystalPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Crystal Path)",
+			"LogName": "Flooring Ice Override (Crystal Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 192, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "CrystalPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Crystal Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -659,7 +924,17 @@
 			"When": { "CrystalPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Gravel Path)",
+			"LogName": "SpringObjects Ice Override (Crystal Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 16, "Y": 272, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "CrystalPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Gravel Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -668,7 +943,17 @@
 			"When": { "GravelPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Gravel Path)",
+			"LogName": "Flooring Snow Override (Gravel Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 64, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "GravelPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Gravel Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -677,7 +962,17 @@
 			"When": { "GravelPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Gravel Path)",
+			"LogName": "SpringObjects Snow Override (Gravel Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 368, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "GravelPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Gravel Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -686,7 +981,17 @@
 			"When": { "GravelPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Gravel Path)",
+			"LogName": "Flooring Ice Override (Gravel Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 64, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "GravelPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Gravel Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -695,7 +1000,17 @@
 			"When": { "GravelPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Stone Floor)",
+			"LogName": "SpringObjects Ice Override (Gravel Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 368, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "GravelPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Stone Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -704,7 +1019,17 @@
 			"When": { "StoneFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Stone Floor)",
+			"LogName": "Flooring Snow Override (Stone Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 64, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "StoneFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Stone Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -713,7 +1038,17 @@
 			"When": { "StoneFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Stone Floor)",
+			"LogName": "SpringObjects Snow Override (Stone Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 272, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "StoneFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Stone Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -722,7 +1057,17 @@
 			"When": { "StoneFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Stone Floor)",
+			"LogName": "Flooring Ice Override (Stone Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 64, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "StoneFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Stone Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -731,7 +1076,17 @@
 			"When": { "StoneFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Straw Floor)",
+			"LogName": "SpringObjects Ice Override (Stone Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 272, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "StoneFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Straw Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -740,7 +1095,17 @@
 			"When": { "StrawFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Straw Floor)",
+			"LogName": "Flooring Snow Override (Straw Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 0, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "StrawFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Straw Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -749,7 +1114,17 @@
 			"When": { "StrawFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Straw Floor)",
+			"LogName": "SpringObjects Snow Override (Straw Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 272, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "StrawFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Straw Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -758,7 +1133,17 @@
 			"When": { "StrawFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Straw Floor)",
+			"LogName": "Flooring Ice Override (Straw Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 0, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "StrawFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Straw Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -767,7 +1152,17 @@
 			"When": { "StrawFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Weathered Floor)",
+			"LogName": "SpringObjects Ice Override (Straw Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 272, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "StrawFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Weathered Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -776,7 +1171,17 @@
 			"When": { "WeatheredFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Weathered Floor)",
+			"LogName": "Flooring Snow Override (Weathered Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 128, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "WeatheredFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Weathered Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -785,7 +1190,17 @@
 			"When": { "WeatheredFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Weathered Floor)",
+			"LogName": "SpringObjects Snow Override (Weathered Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 304, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "WeatheredFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Weathered Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -794,7 +1209,17 @@
 			"When": { "WeatheredFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Weathered Floor)",
+			"LogName": "Flooring Ice Override (Weathered Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 128, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "WeatheredFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Weathered Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -803,7 +1228,17 @@
 			"When": { "WeatheredFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Wood Floor)",
+			"LogName": "SpringObjects Ice Override (Weathered Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 304, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "WeatheredFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Wood Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -812,7 +1247,17 @@
 			"When": { "WoodFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Wood Floor)",
+			"LogName": "Flooring Snow Override (Wood Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "WoodFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Wood Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -821,7 +1266,17 @@
 			"When": { "WoodFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Wood Floor)",
+			"LogName": "SpringObjects Snow Override (Wood Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 256, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "WoodFloor_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Wood Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -830,7 +1285,17 @@
 			"When": { "WoodFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Wood Floor)",
+			"LogName": "Flooring Ice Override (Wood Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "WoodFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Wood Floor) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
@@ -839,7 +1304,17 @@
 			"When": { "WoodFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Snow Override (Wood Path)",
+			"LogName": "SpringObjects Ice Override (Wood Floor) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 256, "Y": 208, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "WoodFloor_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Snow Override (Wood Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Snow_Override.png",
@@ -848,7 +1323,17 @@
 			"When": { "WoodPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Snow Override (Wood Path)",
+			"LogName": "Flooring Snow Override (Wood Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 128, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "WoodPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Snow Override (Wood Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Snow_Override.png",
@@ -857,7 +1342,17 @@
 			"When": { "WoodPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring Ice Override (Wood Path)",
+			"LogName": "SpringObjects Snow Override (Wood Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Snow_Override.png",
+			"ToArea": { "X": 336, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "WoodPath_Replacement": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
+				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
+		},
+		{
+			"LogName": "Flooring Ice Override (Wood Path) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring",
 			"FromFile": "assets/Ice_Override.png",
@@ -866,13 +1361,33 @@
 			"When": { "WoodPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "SpringObjects Ice Override (Wood Path)",
+			"LogName": "Flooring Ice Override (Wood Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "TerrainFeatures/Flooring",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 128, "Y": 64, "Width": 64, "Height": 64},
+			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
+			"When": { "WoodPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Wood Path) -- Default",
 			"Action": "EditImage",
 			"Target": "Maps/springobjects",
 			"FromFile": "assets/Ice_Override.png",
 			"ToArea": { "X": 336, "Y": 256, "Width": 16, "Height": 16},
 			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
 			"When": { "WoodPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
+		},
+		{
+			"LogName": "SpringObjects Ice Override (Wood Path) -- Recolor",
+			"Action": "EditImage",
+			"Target": "Maps/springobjects",
+			"FromFile": "assets/{{Prefix}}Ice_Override.png",
+			"ToArea": { "X": 336, "Y": 256, "Width": 16, "Height": 16},
+			"FromArea": { "X": 0, "Y": 0, "Width": 16, "Height": 16},
+			"When": { "WoodPath_Replacement": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
+				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
 		},
 	]
 }
