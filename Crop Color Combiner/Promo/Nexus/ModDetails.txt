@@ -48,4 +48,4 @@ Details:
 [b][color=#ffff00]Crop Color Combiner[/color][/b] requires [url=https://smapi.io]SMAPI[/url] version 2.10 or higher and should work with Stardew Valley 1.3.36 or higher.
 
 
-[b]Source Code Repository: [/b][url=https://github.com/MouseyPounds/stardew-mods/tree/master/CropColorCombiner]GitHub[/url]
+[b]Source Code Repository: [/b][url=https://github.com/MouseyPounds/stardew-mods/tree/master/Crop%20Color%20Combiner]GitHub[/url]
