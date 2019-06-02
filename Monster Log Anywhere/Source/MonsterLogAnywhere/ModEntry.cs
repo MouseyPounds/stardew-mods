@@ -20,15 +20,32 @@ namespace MonsterLogAnywhere
         {
             if (e.Button == this.Config.Monster_Log_Keybind)
             {
-                this.Monitor.Log("Caught button pressed event", LogLevel.Trace);
+                this.Monitor.Log("Detected button press to open monster log", LogLevel.Trace);
                 if (Game1.activeClickableMenu == null)
                 {
-                    this.Monitor.Log("Showing the log", LogLevel.Debug);
-                    ((AdventureGuild)Game1.getLocationFromName("AdventureGuild")).showMonsterKillList();
-                }
+					GameLocation adventureGuild = Game1.getLocationFromName("AdventureGuild");
+					if (this.Helper.ModRegistry.IsLoaded("DefenTheNation.CustomGuildChallenges"))
+					{
+						IReflectedMethod method = this.Helper.Reflection.GetMethod(adventureGuild, "ShowNewMonsterKillList");
+						if (method == null)
+						{
+                            this.Monitor.Log("Cannot access the Custom Guild Challenge log method", LogLevel.Error);
+                        }
+						else 
+						{
+                            this.Monitor.Log("Showing the Custom Guild Challenge monster log", LogLevel.Trace);
+                            method.Invoke();
+						}
+					}
+					else 
+					{
+                        this.Monitor.Log("Showing the vanilla monster log", LogLevel.Trace);
+                        (adventureGuild as AdventureGuild).showMonsterKillList();
+					}
+				}
                 else
                 {
-                    this.Monitor.Log("Can't show log because a menu is up.", LogLevel.Debug);
+                    this.Monitor.Log("Can't show monster log because a menu is up.", LogLevel.Debug);
                 }
                 
             }
