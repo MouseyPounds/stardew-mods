@@ -29,6 +29,7 @@ namespace PlantablePalmTrees
                 Game1.currentLocation != null &&
                 Game1.activeClickableMenu == null &&
                 Game1.player.CurrentItem != null &&
+                Game1.player.CurrentItem.canBeGivenAsGift() &&
                 Game1.player.CurrentItem.ParentSheetIndex == PalmTreeSeed &&
                 (e.Button.IsActionButton() || e.Button.IsUseToolButton()) &&
                 (!this.Config.Use_Modifier_Key || Helper.Input.IsDown(this.Config.Modifier_Key)))
@@ -71,6 +72,7 @@ namespace PlantablePalmTrees
                 Game1.currentLocation != null &&
                 Game1.activeClickableMenu == null &&
                 Game1.player.CurrentItem != null &&
+                Game1.player.CurrentItem.canBeGivenAsGift() &&
                 Game1.player.CurrentItem.ParentSheetIndex == PalmTreeSeed &&
                 this.Config.Show_Placement_Icon &&
                 (!this.Config.Use_Modifier_Key || Helper.Input.IsDown(this.Config.Modifier_Key)))
