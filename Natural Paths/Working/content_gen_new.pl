@@ -42,29 +42,29 @@ my %token = (
 	'CobblestonePath_Replacement' => {
 		'name' => 'Cobblestone Path',
 		'obj_id' => 411,
-		'floor_sprite' => '"X": 0, "Y": 128',
-		'obj_sprite' => '"X": 48, "Y": 272',
+		'floor_sprite' => {"X" => 0, "Y" => 128},
+		'obj_sprite' => {"X" => 48, "Y" => 272},
 		'variant' => 'CobblestonePath_Variant',
 	},
 	'CrystalPath_Replacement' => {
 		'name' => 'Crystal Path',
 		'obj_id' => 409,
-		'floor_sprite' => '"X": 192, "Y": 64',
-		'obj_sprite' => '"X": 16, "Y": 272',
+		'floor_sprite' => {"X" => 192, "Y" => 64},
+		'obj_sprite' => {"X" => 16, "Y" => 272},
 		'variant' => 'CrystalPath_Variant',
 	},
 	'GravelPath_Replacement' => {
 		'name' => 'Gravel Path',
 		'obj_id' => 407,
-		'floor_sprite' => '"X": 64, "Y": 64',
-		'obj_sprite' => '"X": 368, "Y": 256',
+		'floor_sprite' => {"X" => 64, "Y" => 64},
+		'obj_sprite' => {"X" => 368, "Y" => 256},
 		'variant' => 'GravelPath_Variant',
 	},
 	'WoodPath_Replacement' => {
 		'name' => 'Wood Path',
 		'obj_id' => 405,
-		'floor_sprite' => '"X": 128, "Y": 64',
-		'obj_sprite' => '"X": 336, "Y": 256',
+		'floor_sprite' => {"X" => 128, "Y" => 64},
+		'obj_sprite' => {"X" => 336, "Y" => 256},
 		'variant' => 'WoodPath_Variant',
 	},
 );
@@ -72,43 +72,43 @@ if ($include_floors) {
 	$token{'BrickFloor_Replacement'} = {
 		'name' => 'Brick Floor',
 		'obj_id' => 293,
-		'floor_sprite' => '"X": 128, "Y": 128',
-		'obj_sprite' => '"X": 80, "Y": 192',
+		'floor_sprite' => {"X" => 128, "Y" => 128},
+		'obj_sprite' => {"X" => 80, "Y" => 192},
 		'variant' => 'BrickFloor_Variant',
 	};
 	$token{'CrystalFloor_Replacement'} = {
 		'name' => 'Crystal Floor',
 		'obj_id' => 333,
-		'floor_sprite' => '"X": 192, "Y": 0',
-		'obj_sprite' => '"X": 336, "Y": 208',
+		'floor_sprite' => {"X" => 192, "Y" => 0},
+		'obj_sprite' => {"X" => 336, "Y" => 208},
 		'variant' => 'CrystalFloor_Variant',
 	};
 	$token{'StoneFloor_Replacement'} = {
 		'name' => 'Stone Floor',
 		'obj_id' => 329,
-		'floor_sprite' => '"X": 64, "Y": 0',
-		'obj_sprite' => '"X": 272, "Y": 208',
+		'floor_sprite' => {"X" => 64, "Y" => 0},
+		'obj_sprite' => {"X" => 272, "Y" => 208},
 		'variant' => 'StoneFloor_Variant',
 	};
 	$token{'StrawFloor_Replacement'} = {
 		'name' => 'Straw Floor',
 		'obj_id' => 401,
-		'floor_sprite' => '"X": 0, "Y": 64',
-		'obj_sprite' => '"X": 272, "Y": 256',
+		'floor_sprite' => {"X" => 0, "Y" => 64},
+		'obj_sprite' => {"X" => 272, "Y" => 256},
 		'variant' => 'StrawFloor_Variant',
 	};
 	$token{'WeatheredFloor_Replacement'} = {
 		'name' => 'Weathered Floor',
 		'obj_id' => 331,
-		'floor_sprite' => '"X": 128, "Y": 0',
-		'obj_sprite' => '"X": 304, "Y": 208',
+		'floor_sprite' => {"X" => 128, "Y" => 0},
+		'obj_sprite' => {"X" => 304, "Y" => 208},
 		'variant' => 'WeatheredFloor_Variant',
 	};
 	$token{'WoodFloor_Replacement'} = {
 		'name' => 'Wood Floor',
 		'obj_id' => 328,
-		'floor_sprite' => '"X": 0, "Y": 0',
-		'obj_sprite' => '"X": 256, "Y": 208',
+		'floor_sprite' => {"X" => 0, "Y" => 0},
+		'obj_sprite' => {"X" => 256, "Y" => 208},
 		'variant' => 'WoodFloor_Variant',
 	};
 }
@@ -127,7 +127,7 @@ my %craft_mat = (
 
 # No output file, everything just prints to stdout and needs redirection because !lazy
 select STDOUT;
-print qq({\n\t"Format": "1.11.0",\n\t"ConfigSchema": {\n);
+print qq({\n\t"Format": "1.11",\n\t"ConfigSchema": {\n);
 foreach my $t (sort keys %token) {
 	# default is DarkDirt for GravelPath and LightGrass for WoodPath; None for all others
 	my $d = "None";
@@ -198,6 +198,7 @@ print <<"END_PRINT";
             "Value": "",
             "When": { "Crafting_Amount": "1" }
         },
+		// Tokens related to recolors
         {
             "Name": "Prefix",
             "Value": "",
@@ -241,6 +242,32 @@ print <<"END_PRINT";
 				"Season": "Fall",
 			}
         },
+		// Area Tokens for each possible floor
+END_PRINT
+
+# THIS won't work. I can't override one token with multiple values...
+foreach my $t (sort keys %token) {
+	print <<"END_PRINT";
+        {
+            "Name": "FloorSpriteX",
+            "Value": "$token{$t}{'floor_sprite'}{'X'}",
+			"When": { "$t:None": "false" },
+        },
+        {
+            "Name": "FloorSpriteY",
+            "Value": "$token{$t}{'floor_sprite'}{'Y'}",
+			"When": { "$t:None": "false" },
+        },
+        {
+            "Name": "ObjectSpriteX",
+            "Value": "$token{$t}{'obj_sprite'}{'X'}",
+			"When": { "$t:None": "false" },
+        },
+        {
+            "Name": "ObjectSpriteY",
+            "Value": "$token{$t}{'obj_sprite'}{'Y'}",
+			"When": { "$t:None": "false" },
+        },
 END_PRINT
 
 print <<"END_PRINT";
@@ -258,17 +285,8 @@ foreach my $t (sort keys %token) {
 		{
 			"LogName": "Flooring ($token{$t}{'name'}) -- Default",
 			"Action": "EditImage",
-			"Target": "TerrainFeatures/Flooring",
+			"Target": "TerrainFeatures/Flooring,TerrainFeatures/Flooring_winter",
 			"FromFile": "assets/{{$t}}_{{Season}}.png",
-			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
-			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { "$t:None": "false" }
-		},
-		{
-			"LogName": "Flooring_winter ($token{$t}{'name'}) -- Default",
-			"Action": "EditImage",
-			"Target": "TerrainFeatures/Flooring_winter",
-			"FromFile": "assets/{{$t}}_Winter.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { "$t:None": "false" }
@@ -276,20 +294,8 @@ foreach my $t (sort keys %token) {
 		{
 			"LogName": "Flooring ($token{$t}{'name'}) -- Recolor",
 			"Action": "EditImage",
-			"Target": "TerrainFeatures/Flooring",
+			"Target": "TerrainFeatures/Flooring,TerrainFeatures/Flooring_winter",
 			"FromFile": "assets/{{Prefix}}{{$t}}_{{Season}}{{Variant}}.png",
-			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
-			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { 
-				"HasFile:assets/{{Prefix}}{{$t}}_{{Season}}{{Variant}}.png": "true",
-				"$t:None": "false",
-			}
-		},
-		{
-			"LogName": "Flooring_winter ($token{$t}{'name'}) -- Recolor",
-			"Action": "EditImage",
-			"Target": "TerrainFeatures/Flooring_winter",
-			"FromFile": "assets/{{Prefix}}{{$t}}_Winter{{Variant}}.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
 			"When": { 
@@ -328,6 +334,7 @@ foreach my $t (sort keys %token) {
 				"Crafting_Material:NoChange": "false",
 			}
 		},
+		// Need to test if Display name has any effect on crafting recipes or not.
 		{
 			"LogName": "ObjectInformation Display Name Change ($token{$t}{'name'})",
 			"Action": "EditData",
@@ -342,22 +349,22 @@ END_PRINT
 foreach my $t (sort keys %token) {
 	print <<"END_PRINT";
 		{
-			"LogName": "Flooring_winter Snow Override ($token{$t}{'name'}) -- Default",
+			"LogName": "Flooring Snow Override ($token{$t}{'name'}) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring_winter",
 			"FromFile": "assets/Snow_Override.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { "$t": "LightGrass", "Snow_Overrides_LightGrass": "true" }
+			"When": { "$t": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true" }
 		},
 		{
-			"LogName": "Flooring_winter Snow Override ($token{$t}{'name'}) -- Recolor",
+			"LogName": "Flooring Snow Override ($token{$t}{'name'}) -- Recolor",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring_winter",
 			"FromFile": "assets/{{Prefix}}Snow_Override.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { "$t": "LightGrass", "Snow_Overrides_LightGrass": "true",
+			"When": { "$t": "LightGrass", "Season": "Winter", "Snow_Overrides_LightGrass": "true",
 				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
 		},
 		{
@@ -380,22 +387,22 @@ foreach my $t (sort keys %token) {
 				"HasFile:assets/{{Prefix}}Snow_Override.png": "true" }
 		},
 		{
-			"LogName": "Flooring_winter Ice Override ($token{$t}{'name'}) -- Default",
+			"LogName": "Flooring Ice Override ($token{$t}{'name'}) -- Default",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring_winter",
 			"FromFile": "assets/Ice_Override.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { "$t": "DarkGrass", "Ice_Overrides_DarkGrass": "true" }
+			"When": { "$t": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true" }
 		},
 		{
-			"LogName": "Flooring_winter Ice Override ($token{$t}{'name'}) -- Recolor",
+			"LogName": "Flooring Ice Override ($token{$t}{'name'}) -- Recolor",
 			"Action": "EditImage",
 			"Target": "TerrainFeatures/Flooring_winter",
 			"FromFile": "assets/{{Prefix}}Ice_Override.png",
 			"ToArea": { $token{$t}{'floor_sprite'}, "Width": 64, "Height": 64},
 			"FromArea": { "X": 0, "Y": 0, "Width": 64, "Height": 64},
-			"When": { "$t": "DarkGrass", "Ice_Overrides_DarkGrass": "true",
+			"When": { "$t": "DarkGrass", "Season": "Winter", "Ice_Overrides_DarkGrass": "true",
 				"HasFile:assets/{{Prefix}}Ice_Override.png": "true" }
 		},
 		{
